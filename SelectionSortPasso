@@ -1,0 +1,42 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+ class selectionSortPassoApasso {
+
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		String entrada[] = scan.nextLine().split(" ");
+		int saida[] = new int[entrada.length];
+		
+		for (int i = 0;i < entrada.length; i++ ) {
+			saida[i] = Integer.parseInt(entrada[i]);
+		}
+		
+		
+		for (int i = 0; i < saida.length; i++ ) {
+			int menor = i;
+			for (int j = i + 1; j < saida.length; j++) {
+				if (saida[j] < saida[menor]) {
+					menor = j;
+					
+				}
+				
+
+			}
+			int aux = saida[i];
+			saida[i] = saida[menor];
+			saida[menor] = aux;
+			if (menor != i) {
+				System.out.println(Arrays.toString(saida));
+			}
+				
+		}
+		
+		
+		scan.close();
+
+	}
+
+}
