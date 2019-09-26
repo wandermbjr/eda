@@ -1,0 +1,86 @@
+@Override
+	public boolean isEmpty() {
+		return this.data == null;
+	}
+
+	@Override
+	public int size() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return this.size(next);
+	}
+	
+	private int size(RecursiveSingleLinkedListImpl<T> no) {
+		if (!no.next.isEmpty()) {
+			return 1 + size(no.next);
+		}return 1;
+	}
+
+	@Override
+	public T search(T element) {
+		if (this.data.equals(element)) {
+			return this.data;
+		}return buscaRecursiva(element, next );
+	}
+	private T buscaRecursiva(T element, RecursiveSingleLinkedListImpl<T> next) {
+		if  (next.equals(null)) {
+			return null;
+		}return buscaRecursiva(element, next.next);
+	}
+
+	@Override
+	public void insert(T element) {
+		if (isEmpty()) {
+			this.data = element;
+			this.next = new RecursiveSingleLinkedListImpl<>();
+		} else {
+			insereRecursivo(element, this.next);
+			
+		}
+	}
+	
+	private void insereRecursivo(T element, RecursiveSingleLinkedListImpl<T> next) {
+		if (next.isEmpty()) {
+			next.data = element;
+			next.next = new RecursiveSingleLinkedListImpl<>();
+		}else {
+			insereRecursivo(element, next.next);
+		}
+	}
+
+	@Override
+	public void remove(T element) {
+		if (next.data.equals(element)) {
+			next = data.next.next;
+		}removeRecursivo(element, next);
+	}
+	private void removeRecursivo(T element, RecursiveSingleLinkedListImpl<T> next) {
+		if (next.data.equals(element)) {
+			next.next = next.next.next;
+		} removeRecursivo(element, next.next);
+	}
+
+	@Override
+	public T[] toArray() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented yet!");
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+	public RecursiveSingleLinkedListImpl<T> getNext() {
+		return next;
+	}
+
+	public void setNext(RecursiveSingleLinkedListImpl<T> next) {
+		this.next = next;
+	}
+
+}
